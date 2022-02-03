@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const projects = require("../model/projects");
 const ProjectModels = require("../model/projects");
 const userModel = require("../model/userModel");
 router.get("/", (req, res) => {
@@ -38,6 +39,41 @@ router.delete("/", async (req, res) => {
       console.log("res", result);
     });
   } catch (error) {}
+});
+
+router.get("/:id", async (req, res) => {
+  try {
+    const current_prooject = await ProjectModels.findOne({
+      _id: req.params.id,
+    });
+    res.status(200).json(current_prooject);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+router.put("/:id", async (req, res) => {
+  try {
+    const current_project = await ProjectModels.findOne({ _id: req.params.id });
+
+    current_project.routes[0].coordinates = req.body.coordinates;
+    current_project.routes[0].points = req.body.routes;
+
+    await current_project.save();
+
+    res.status(200).json({ message: "Updated" });
+  } catch (error) {}
+});
+
+router.delete("/:project_id/", async (req, res) => {
+  try {
+    await ProjectModels.deleteOne({
+      _id: req.params.project_id,
+    });
+    res.status(200).json({ message: "project deleted" });
+  } catch (error) {
+    res.status(404).json({ message: "not found" });
+  }
 });
 
 module.exports = router;
