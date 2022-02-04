@@ -12,6 +12,7 @@ const routeSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+
   mode: {
     type: String,
     required: true,
@@ -37,7 +38,14 @@ const projectSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-
+  country: {
+    type: String,
+    required: true,
+  },
+  city: {
+    type: String,
+    required: true,
+  },
   createdAd: {
     type: Date,
     immutable: true,

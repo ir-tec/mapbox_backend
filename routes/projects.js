@@ -19,6 +19,8 @@ router.post("/", async (req, res) => {
       project_name: req.body.project_name,
       user_id: req.userId,
       routes: req.body.routes,
+      country: req.body.country,
+      city: req.body.city,
     })
       .then((result) => {
         res.status(200).json({ message: "created" });
@@ -62,7 +64,24 @@ router.put("/:id", async (req, res) => {
     await current_project.save();
 
     res.status(200).json({ message: "Updated" });
-  } catch (error) {}
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+router.put("/doc/:id", async (req, res) => {
+  try {
+    const current_project = await ProjectModels.findOne({ _id: req.params.id });
+
+    current_project.project_name = req.body.project_name;
+    current_project.country = req.body.country;
+    current_project.city = req.body.city;
+
+    await current_project.save();
+
+    res.status(200).json({ message: "Updated" });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
 });
 
 router.delete("/:project_id/", async (req, res) => {
