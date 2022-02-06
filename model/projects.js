@@ -42,6 +42,14 @@ const projectSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  lat: {
+    type: String,
+    required: true,
+  },
+  lng: {
+    type: String,
+    required: true,
+  },
   city: {
     type: String,
     required: true,

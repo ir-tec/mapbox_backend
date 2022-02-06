@@ -21,6 +21,8 @@ router.post("/", async (req, res) => {
       routes: req.body.routes,
       country: req.body.country,
       city: req.body.city,
+      lat: req.body.lat,
+      lng: req.body.lng,
     })
       .then((result) => {
         res.status(200).json({ message: "created" });
