@@ -62,12 +62,15 @@ router.post("/get_code", async (req, res) => {
     Wellcome to Spatigo 
     Your verification code is : ${new_token.token}
     `;
-    await sendEmail(user.email, "Verify Email", message);
-
-    res.status(200).json({
-      message: "Check your email for verification code",
-      id: req.body.id,
-    });
+    const is_send = await sendEmail(user.email, "Verify Email", message);
+    if (is_send) {
+      res.status(200).json({
+        message: "Check your email for verification code",
+        id: req.body.id,
+      });
+    } else {
+      res.status(400).json({ message: "Email Not Sended" });
+    }
   } catch (error) {
     res.status(400).json({ message: error.message });
   }

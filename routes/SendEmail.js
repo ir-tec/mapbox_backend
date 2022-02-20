@@ -19,7 +19,9 @@ module.exports = async (email, subject, text) => {
       subject: subject,
       text: text,
     });
+    return true;
   } catch (error) {
     console.log(error);
+    return false;
   }
 };

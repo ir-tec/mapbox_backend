@@ -37,13 +37,6 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.delete("/", async (req, res) => {
-  try {
-    await User.deleteMany({});
-    res.status(200).json({ message: "all clear" });
-  } catch (error) {}
-});
-
 router.post("/try_forget", async (req, res) => {
   try {
     const user = await User.findOne({ email: req.body.email });
@@ -122,15 +115,5 @@ router.get("/images/:filename", async (req, res) => {
     return res.status(404).json({ message: error.message });
   }
 });
-router.get("/images/", async (req, res) => {
-  try {
-    let file = await gfs.files.find({});
-    // if (file.contentType === "image/jpeg" || file.contentType === "image/png") {
-    res.status(200).json({ message: "asdasd" });
-    console.log(file);
-    // }
-  } catch (error) {
-    return res.status(404).json({ message: error.message });
-  }
-});
+
 module.exports = router;
