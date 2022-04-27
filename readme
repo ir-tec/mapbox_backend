@@ -1,0 +1,15 @@
+BackEnd part for mapbox_react repo 
+
+1.It provide authentication and authorization level 
+2.Saves routes in mongo db 
+3.saves users information that include photo and some nessessery data 
+
+    .env file : 
+    db_connection_string=
+    jwt_secret_token=
+    HOST
+    USER
+    PASS
+    SERVICE
+    BASE_URL
+
