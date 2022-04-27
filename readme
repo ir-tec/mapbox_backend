@@ -2,7 +2,7 @@ BackEnd part for mapbox_react repo
 
 1.It provide authentication and authorization level 
 2.user,pass and service in .env needs for sending token to the email of the user for authentication
-3.saves users information that include photo and some nessessery data 
+3.saves users information that include photo and some necessary data 
 4.Saves routes in mongo db 
 5.Get the individual route details and edit them  
 
